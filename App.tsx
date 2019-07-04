@@ -3,11 +3,11 @@ import {Platform, StyleSheet, Text, View} from 'react-native';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
+  android: "live reload"
 });
 
+//TODO https://manage.auth0.com/dashboard/us/cutiko/applications/VoGh1xi1OtJbQx87wc2Ip0Ylnpq0qK99/quickstart
+//TODO https://github.com/auth0-samples/auth0-react-native-sample/blob/Embedded/01-Custom-Form/app/components/Login.js
 type Props = {};
 export default class App extends Component<Props> {
   render() {
