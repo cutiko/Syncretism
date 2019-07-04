@@ -1,13 +1,12 @@
 import React from 'react';
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {Button, ScrollView, StyleSheet, Text, View} from 'react-native';
 import Auth0 from 'react-native-auth0';
 
+const auth0 = new Auth0({domain: 'cutiko.auth0.com', clientId: 'VoGh1xi1OtJbQx87wc2Ip0Ylnpq0qK99'})
 
-//TODO https://manage.auth0.com/dashboard/us/cutiko/applications/VoGh1xi1OtJbQx87wc2Ip0Ylnpq0qK99/quickstart
-//TODO https://github.com/auth0-samples/auth0-react-native-sample/blob/Embedded/01-Custom-Form/app/components/Login.js
+
 //TODO update IOS
-//TODO debugger https://github.com/jhen0409/react-native-debugger coolest debugger
-interface Props{};
+interface Props{}
 
 interface State {
   login: string | null
@@ -33,21 +32,37 @@ export default class App extends React.Component<Props, State> {
       this.state = {
           login: null
       }
-      this.login()
+      this.signUp()
   }
 
 
-  login : Function = async ()=> {
-    const auth0 = new Auth0({domain: 'cutiko.auth0.com', clientId: 'VoGh1xi1OtJbQx87wc2Ip0Ylnpq0qK99'})
+  signUp : Function = async ()=> {
     try {
-      const result = await auth0
-        .webAuth
-        .authorize({scope: 'openid profile email', audience: 'https://cutiko.auth0.com/userinfo'})
+      const result = await auth0.auth.createUser({
+        email: "test@test.com",
+        password: "12345678Aa!",
+        connection: "Username-Password-Authentication"
+      })
       this.setState({login:JSON.stringify(result)})
     } catch (e) {
       this.setState({login:JSON.stringify(e)})
     }
-    console.log(this.state.login)
+    console.log("SIGNUP_RESPONSE", this.state.login)
+  }
+
+  login : Function = async ()=> {
+    try {
+      const result = await auth0.auth.passwordRealm({
+        username: "test@test.com",
+        password: "12345678Aa!",
+        realm: 'Username-Password-Authentication',
+        scope: "openid profile email"
+      })
+      this.setState({login:JSON.stringify(result)})
+    } catch (e) {
+      this.setState({login:JSON.stringify(e)})
+    }
+    console.log("LOGIN_RESPONSE", this.state.login)
   }
 
   render() {
@@ -55,6 +70,7 @@ export default class App extends React.Component<Props, State> {
       <View style={styles.container}>
         <ScrollView>
           <Text style={styles.welcome}>{this.state.login}</Text>
+          <Button title={"LOGIN"} onPress={()=>this.login()}/>
         </ScrollView>
       </View>
     );
