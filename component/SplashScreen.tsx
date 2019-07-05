@@ -51,15 +51,7 @@ export default class SplashScreen extends Component<Props, State> {
       this.setState({auth})
     } catch (error) {
       this.setState({auth:{type: Error, error}})
-      switch (this.state.auth.type) {
-        case Error:
-          console.log("is type of error")
-          return
-        default:
-          console.log("not type of error")
-      }
     }
-
   }
 
   componentDidMount(): void {
@@ -68,7 +60,6 @@ export default class SplashScreen extends Component<Props, State> {
 
   render() {
     const {auth} = this.state
-    console.log("STATE_LOGIN", auth)
     switch (auth.type) {
       case Error:
         return (
