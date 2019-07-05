@@ -1,12 +1,6 @@
 import React from 'react';
+import {createAppContainer} from "react-navigation";
+import Navigator from "./Navigator";
 
-import SplashScreen from './component/splash/SplashScreen'
+export default createAppContainer(Navigator)
 
-export default class App extends React.Component {
-
-  render() {
-    return (
-      <SplashScreen/>
-    );
-  }
-}
