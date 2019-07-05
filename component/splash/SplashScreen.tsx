@@ -19,7 +19,7 @@ export interface Login {
   credentials: Credentials
 }
 
-const Error : string = "Error"
+export const Error : string = "Error"
 interface Error {
   type: typeof Error
   error: {}
@@ -29,7 +29,7 @@ export class NoSession {
   type = null
 }
 
-type auth = Login | Error | NoSession
+export type auth = Login | Error | NoSession
 
 export interface State {
   loading: boolean

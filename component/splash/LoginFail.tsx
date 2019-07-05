@@ -13,7 +13,7 @@ export default ({callback}: {callback : Function})=> {
       </Text>
       <Image source={img}/>
       <Text style={[styles.secondaryText, styles.padding]}>
-        Lo siento pero todavía no soportamos autenticación anonima
+        El inicio de sesión fue cancelado o la sesión expiró
       </Text>
       <TouchableOpacity style={styles.accentBtn} onPress={callback()}>
         <Text style={[styles.whiteText, styles.padding]}>Iniciar Sesion</Text>
