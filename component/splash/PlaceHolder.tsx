@@ -1,14 +1,10 @@
 import React from 'react';
-import {Props as AppProps} from '../../types/component'
 import styles from "../../theme/styles";
 import {ActivityIndicator, Image, View} from "react-native";
 import {accent, primaryDark} from "../../theme/colors";
 
-interface Props extends AppProps {
-  callback: Function
-}
 
-export default ({callback}: Props)=> {
+export default ({callback}: {callback: Function})=> {
 
   setTimeout(callback(), 1200)
 

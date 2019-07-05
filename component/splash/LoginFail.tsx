@@ -2,13 +2,9 @@ import React from 'react'
 import {Image, Platform, Text, TouchableOpacity, View} from "react-native";
 import styles from "../../theme/styles";
 import {primaryLight} from "../../theme/colors";
-import {Props as AppProps} from '../../types/component'
 
-interface Props extends AppProps{
-  callback: Function
-}
 
-export default ({callback}: Props)=> {
+export default ({callback}: {callback : Function})=> {
   const img = (Platform.OS === 'ios') ? require('../../images/apple_error.png') : require('../../images/android_error.png')
   return(
     <View style={[styles.container, styles.center, {backgroundColor: primaryLight}]}>

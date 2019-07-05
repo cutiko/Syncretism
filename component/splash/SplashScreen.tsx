@@ -60,9 +60,7 @@ export default class SplashScreen extends Component<Props, State> {
     const {auth} = this.state
     switch (auth.type) {
       case Error:
-        return (
-          <LoginFail callback={()=>this.login}/>
-        )
+        return (<LoginFail callback={()=>this.login}/>)
       case Loged:
         return (<View style={[{backgroundColor:'green'}, styles.container]}/>)
       default:
