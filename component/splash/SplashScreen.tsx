@@ -4,6 +4,7 @@ import styles from "../../theme/styles";
 import Auth0 from 'react-native-auth0';
 import {Props} from "../../types/component";
 import PlaceHolder from "./PlaceHolder";
+import LoginFail from "./LoginFail";
 
 const Loged : string = "Loged"
 interface Credentials {
@@ -24,8 +25,8 @@ interface Error {
   error: {}
 }
 
-interface NoData {
-  type: null
+class NoData {
+  type = null
 }
 
 type auth = Login | Error | NoData
@@ -38,7 +39,7 @@ export default class SplashScreen extends Component<Props, State> {
 
   constructor(props : Props) {
       super(props);
-      this.state = {auth: {type:null}};
+      this.state = {auth: new NoData()};
   }
 
   login : Function = async ()=> {
@@ -60,12 +61,10 @@ export default class SplashScreen extends Component<Props, State> {
     switch (auth.type) {
       case Error:
         return (
-          <View style={[{backgroundColor:'red'}, styles.container]}/>
+          <LoginFail callback={()=>this.login}/>
         )
       case Loged:
-        return (
-          <View style={[{backgroundColor:'green'}, styles.container]}/>
-        )
+        return (<View style={[{backgroundColor:'green'}, styles.container]}/>)
       default:
         return (<PlaceHolder callback={()=>this.login}/>);
     }
