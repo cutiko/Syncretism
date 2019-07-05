@@ -34,7 +34,6 @@ export default class App extends React.Component<Props, State> {
       this.state = {
           login: null
       }
-      this.signUp()
   }
 
 
