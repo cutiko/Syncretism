@@ -1,8 +1,9 @@
 import React, {Component} from 'react'
-import {Image, View} from "react-native";
-import styles from "../theme/styles";
+import {View} from "react-native";
+import styles from "../../theme/styles";
 import Auth0 from 'react-native-auth0';
-import {Props} from "../types/component";
+import {Props} from "../../types/component";
+import PlaceHolder from "./PlaceHolder";
 
 const Loged : string = "Loged"
 interface Credentials {
@@ -55,7 +56,7 @@ export default class SplashScreen extends Component<Props, State> {
   }
 
   componentDidMount(): void {
-    this.login()
+    //this.login()
   }
 
   render() {
@@ -70,12 +71,7 @@ export default class SplashScreen extends Component<Props, State> {
           <View style={[{backgroundColor:'green'}, styles.container]}/>
         )
       default:
-        return (
-          <View style={[styles.container, styles.splash]}>
-            <Image source={require('../images/syncretism_logotype.png')}/>
-            <Image source={require('../images/syncretism_logo.png')}/>
-          </View>
-        );
+        return (<PlaceHolder callback={()=>this.login}/>);
     }
   }
 

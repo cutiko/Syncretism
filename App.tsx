@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet} from 'react-native';
 
 import Auth0 from 'react-native-auth0';
-import SplashScreen from './component/SplashScreen'
+import SplashScreen from './component/splash/SplashScreen'
 
 const auth0 = new Auth0({domain: 'cutiko.auth0.com', clientId: 'VoGh1xi1OtJbQx87wc2Ip0Ylnpq0qK99'})
 
