@@ -37,6 +37,8 @@ interface State {
 
 export default class SplashScreen extends Component<Props, State> {
 
+  static navigationOptions = {header: null}
+
   constructor(props : Props) {
       super(props);
       this.state = {auth: new NoData()};
