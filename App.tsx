@@ -1,6 +1,8 @@
 import React from 'react';
-import {Button, ScrollView, StyleSheet, Text, View} from 'react-native';
+import {StyleSheet} from 'react-native';
+
 import Auth0 from 'react-native-auth0';
+import SplashScreen from './component/SplashScreen'
 
 const auth0 = new Auth0({domain: 'cutiko.auth0.com', clientId: 'VoGh1xi1OtJbQx87wc2Ip0Ylnpq0qK99'})
 
@@ -67,12 +69,7 @@ export default class App extends React.Component<Props, State> {
 
   render() {
     return (
-      <View style={styles.container}>
-        <ScrollView>
-          <Text style={styles.welcome}>{this.state.login}</Text>
-          <Button title={"LOGIN"} onPress={()=>this.login()}/>
-        </ScrollView>
-      </View>
+      <SplashScreen/>
     );
   }
 }
