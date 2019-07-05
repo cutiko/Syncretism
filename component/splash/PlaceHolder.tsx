@@ -4,9 +4,9 @@ import {ActivityIndicator, Image, View} from "react-native";
 import {accent, primaryDark} from "../../theme/colors";
 
 
-export default ({callback}: {callback: Function})=> {
+export default ({callback}: {callback?: Function})=> {
 
-  setTimeout(callback(), 1200)
+  if (callback) setTimeout(callback(), 1200)
 
   return(
     <View style={[styles.container, styles.center, {backgroundColor: primaryDark}]}>

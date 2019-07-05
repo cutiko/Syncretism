@@ -4,6 +4,7 @@ import {Props} from "../../types/component";
 import PlaceHolder from "./PlaceHolder";
 import LoginFail from "./LoginFail";
 import {WELCOME_SCREEN} from "../../Navigator";
+import {getSession, options, saveSession} from "./Session";
 
 const Loged : string = "Loged"
 interface Credentials {
@@ -13,7 +14,7 @@ interface Credentials {
   expiresIn: number,
   tokenType: string
 }
-interface Login {
+export interface Login {
   type: typeof Loged
   credentials: Credentials
 }
@@ -24,13 +25,14 @@ interface Error {
   error: {}
 }
 
-class NoData {
+export class NoSession {
   type = null
 }
 
-type auth = Login | Error | NoData
+type auth = Login | Error | NoSession
 
-interface State {
+export interface State {
+  loading: boolean
   auth: auth
 }
 
@@ -40,18 +42,29 @@ export default class SplashScreen extends Component<Props, State> {
 
   constructor(props : Props) {
       super(props);
-      this.state = {auth: new NoData()};
+      this.state = {
+        loading: true,
+        auth: new NoSession()
+      };
+      this.restoreData()
+  }
+
+
+  restoreData = async ()=> {
+    const auth = await getSession()
+    this.setState({loading: false, auth})
   }
 
   login : Function = async ()=> {
-    const auth0 = new Auth0({domain: 'cutiko.auth0.com', clientId: 'VoGh1xi1OtJbQx87wc2Ip0Ylnpq0qK99'});
     try {
+      const auth0 = new Auth0(options);
       const credentials = await auth0.webAuth.authorize({
         scope: 'openid profile email',
         audience: 'https://cutiko.auth0.com/userinfo'
       })
       const auth : Login = {type: Loged, credentials}
       this.setState({auth})
+      saveSession(auth)
     } catch (error) {
       this.setState({auth:{type: Error, error}})
     }
@@ -60,7 +73,8 @@ export default class SplashScreen extends Component<Props, State> {
   goToWelcome : Function = ()=> this.props.navigation.navigate(WELCOME_SCREEN)
 
   render() {
-    const {auth} = this.state
+    const {loading, auth} = this.state
+    if (loading) return (<PlaceHolder/>)
     switch (auth.type) {
       case Error:
         return (<LoginFail callback={()=>this.login}/>)
