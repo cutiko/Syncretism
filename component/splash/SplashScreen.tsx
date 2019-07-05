@@ -5,31 +5,7 @@ import PlaceHolder from "./PlaceHolder";
 import LoginFail from "./LoginFail";
 import {WELCOME_SCREEN} from "../../Navigator";
 import {getSession, options, saveSession} from "./Session";
-
-const Loged : string = "Loged"
-interface Credentials {
-  accessToken: string
-  idToken: string
-  scope: string
-  expiresIn: number,
-  tokenType: string
-}
-export interface Login {
-  type: typeof Loged
-  credentials: Credentials
-}
-
-export const Error : string = "Error"
-interface Error {
-  type: typeof Error
-  error: {}
-}
-
-export class NoSession {
-  type = null
-}
-
-export type auth = Login | Error | NoSession
+import {auth, Error, Loged, Login, NoSession} from "../../models/session/Session";
 
 export interface State {
   loading: boolean

@@ -1,6 +1,6 @@
 import {AsyncStorage} from "react-native";
-import {auth, Error, Login, NoSession} from "./SplashScreen";
 import Auth0, {Options} from "react-native-auth0";
+import {auth, Error, Login, NoSession} from "../../models/session/Session";
 
 const CREDENTIALS = "CREDENTIALS_KEY"
 export const options : Options = {domain: 'cutiko.auth0.com', clientId: 'VoGh1xi1OtJbQx87wc2Ip0Ylnpq0qK99'}
