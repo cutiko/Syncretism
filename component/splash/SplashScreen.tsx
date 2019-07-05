@@ -1,10 +1,9 @@
 import React, {Component} from 'react'
-import {View} from "react-native";
-import styles from "../../theme/styles";
 import Auth0 from 'react-native-auth0';
 import {Props} from "../../types/component";
 import PlaceHolder from "./PlaceHolder";
 import LoginFail from "./LoginFail";
+import {WELCOME_SCREEN} from "../../Navigator";
 
 const Loged : string = "Loged"
 interface Credentials {
@@ -58,13 +57,15 @@ export default class SplashScreen extends Component<Props, State> {
     }
   }
 
+  goToWelcome : Function = ()=> this.props.navigation.navigate(WELCOME_SCREEN)
+
   render() {
     const {auth} = this.state
     switch (auth.type) {
       case Error:
         return (<LoginFail callback={()=>this.login}/>)
       case Loged:
-        return (<View style={[{backgroundColor:'green'}, styles.container]}/>)
+        return (<PlaceHolder callback={()=>this.goToWelcome}/>)
       default:
         return (<PlaceHolder callback={()=>this.login}/>);
     }
