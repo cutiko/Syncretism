@@ -55,10 +55,6 @@ export default class SplashScreen extends Component<Props, State> {
     }
   }
 
-  componentDidMount(): void {
-    //this.login()
-  }
-
   render() {
     const {auth} = this.state
     switch (auth.type) {
