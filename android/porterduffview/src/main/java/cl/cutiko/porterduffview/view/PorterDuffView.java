@@ -3,25 +3,24 @@ package cl.cutiko.porterduffview.view;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
 import android.view.View;
-import android.widget.Toast;
 
 public class PorterDuffView extends View {
 
-    private PorterDuff.Mode MODE = PorterDuff.Mode.XOR;
+    private PorterDuff.Mode MODE = PorterDuff.Mode.LIGHTEN;
     private Paint paint;
     private final Bitmap destination, source;
 
     public PorterDuffView(Context context, Bitmap destination, Bitmap source) {
         super(context);
-        paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paint = new Paint();
         this.destination = destination;
         this.source = source;
-        setBackgroundColor(Color.RED);
+        paint.setXfermode(new PorterDuffXfermode(MODE));
     }
 
     @Override
@@ -31,12 +30,13 @@ public class PorterDuffView extends View {
         //canvas.drawBitmap(destination, 0, 0, paint);
         //canvas.drawBitmap(source, 0, 0, paint);
         //int sc = canvas.saveLayer(0, 0, 200, 200, null, Canvas.ALL_SAVE_FLAG);
-        canvas.drawBitmap(destination, 0, 200, paint);
-        paint.setXfermode(new PorterDuffXfermode(MODE));
-        canvas.drawBitmap(source, 50, 250, paint);
+        /*Rect rect = */new Rect();
+/*       */
+        /*canvas.clipT*/
+        canvas.drawBitmap(destination, 0, 0, paint);
+        canvas.drawBitmap(source, 0, 0, paint);
+       
         //paint.setXfermode(null);
         //canvas.restoreToCount(sc);
-
-        Toast.makeText(getContext(), "test 1", Toast.LENGTH_LONG).show();
     }
 }

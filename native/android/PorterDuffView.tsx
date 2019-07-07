@@ -22,7 +22,7 @@ export default ({style, urls: {destination, source}}: Props)=> {
   //fixme cant use the constants PorterDuffView.DESTINATION or SOURCE without getting linted
   return (
     <PorterDuffView
-      style={style}
+      style={[style]}
       urls={{DESTINATION: destination, SOURCE: source}}
     />
   )

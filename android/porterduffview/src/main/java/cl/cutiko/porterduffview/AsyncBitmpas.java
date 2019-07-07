@@ -37,6 +37,13 @@ public class AsyncBitmpas extends AsyncTask<ReadableMap, Void, Map<String, Bitma
             //TODO this should be either Kotlin coroutines or a threadpool
             Bitmap destination = picasso.load(dest).get();
             Bitmap source = picasso.load(src).get();
+            Log.d("CUTIKO_TAG", "AsyncBitmpas.java" + " doInBackground: bytes destination " + destination.getByteCount());
+            Log.d("CUTIKO_TAG", "AsyncBitmpas.java" + " doInBackground: height destination " + destination.getHeight());
+            Log.d("CUTIKO_TAG", "AsyncBitmpas.java" + " doInBackground: width destination " + destination.getWidth());
+            Log.d("CUTIKO_TAG", "AsyncBitmpas.java" + " doInBackground: bytes source " + source.getByteCount());
+            Log.d("CUTIKO_TAG", "AsyncBitmpas.java" + " doInBackground: height source " + source.getHeight());
+            Log.d("CUTIKO_TAG", "AsyncBitmpas.java" + " doInBackground: width source " + source.getWidth());
+
             Map<String, Bitmap> map = new HashMap<>();
             map.put(Constants.DESTINATION, destination);
             map.put(Constants.SOURCE, source);

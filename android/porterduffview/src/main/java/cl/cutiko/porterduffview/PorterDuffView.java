@@ -3,6 +3,7 @@ package cl.cutiko.porterduffview;
 import android.graphics.Bitmap;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.uimanager.ThemedReactContext;
@@ -45,7 +46,9 @@ public class PorterDuffView extends com.facebook.react.uimanager.SimpleViewManag
                 destination,
                 source
         );
-        view.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         frameLayout.addView(view);
+        view.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+
+        Toast.makeText(frameLayout.getContext(), "view added", Toast.LENGTH_LONG).show();
     }
 }
