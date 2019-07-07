@@ -25,7 +25,12 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    //TODO duplicated dependency
     implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
+    //fixme not recommended to force project version it could lead missing usages due to downgrade
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+    //TODO react native dependency is duplicated should have another module to get it
+    implementation "com.facebook.react:react-native:0.59.9"
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
