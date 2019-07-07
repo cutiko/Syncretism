@@ -20,7 +20,7 @@ export default (props: any)=> {
       <Image source={require('../../images/syncretism_logo.png')}/>*/}
       {/*<ActivityIndicator color={accent} size={"large"}/>*/}
       <PorterDuffView
-        style={{width: 100, height: 100}}
+        style={{width: 500, height: 500}}
         urls={{
           destination: "https://cdn.legalcheek.com/wp-content/uploads/2017/10/LawyerDog.jpg",
           source: "https://i.ytimg.com/vi/maKrR-TKpJQ/maxresdefault.jpg"
