@@ -11,32 +11,23 @@ import android.view.View;
 
 public class PorterDuffView extends View {
 
-    private PorterDuff.Mode MODE = PorterDuff.Mode.LIGHTEN;
     private Paint paint;
     private final Bitmap destination, source;
+    private final Rect rect = new Rect();
 
     public PorterDuffView(Context context, Bitmap destination, Bitmap source) {
         super(context);
-        paint = new Paint();
+        paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         this.destination = destination;
         this.source = source;
-        paint.setXfermode(new PorterDuffXfermode(MODE));
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.XOR));
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        //canvas.drawColor(Color.BLACK);
-        //canvas.drawBitmap(destination, 0, 0, paint);
-        //canvas.drawBitmap(source, 0, 0, paint);
-        //int sc = canvas.saveLayer(0, 0, 200, 200, null, Canvas.ALL_SAVE_FLAG);
-        /*Rect rect = */new Rect();
-/*       */
-        /*canvas.clipT*/
-        canvas.drawBitmap(destination, 0, 0, paint);
-        canvas.drawBitmap(source, 0, 0, paint);
-       
-        //paint.setXfermode(null);
-        //canvas.restoreToCount(sc);
+        canvas.getClipBounds(rect);
+        canvas.drawBitmap(destination, null, rect,  paint);
+        canvas.drawBitmap(source, null, rect, paint);
     }
 }
