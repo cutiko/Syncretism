@@ -1,0 +1,31 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'Syncretism' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for Syncretism
+  pod 'React', :path => '../node_modules/react-native', :subspecs => ['RCTLinkingIOS']
+
+
+
+  target 'SyncretismTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end
+
+target 'Syncretism-tvOS' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for Syncretism-tvOS
+
+  target 'Syncretism-tvOSTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end
