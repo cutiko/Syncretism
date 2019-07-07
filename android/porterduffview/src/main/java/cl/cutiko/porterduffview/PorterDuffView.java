@@ -1,11 +1,8 @@
 package cl.cutiko.porterduffview;
 
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.widget.ImageView;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.uimanager.ThemedReactContext;
@@ -16,7 +13,7 @@ import java.util.Map;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class PorterDuffView extends com.facebook.react.uimanager.SimpleViewManager<ImageView> implements BitmapsCallback {
+public class PorterDuffView extends com.facebook.react.uimanager.SimpleViewManager<FrameLayout> implements BitmapsCallback {
 
     @Nonnull
     @Override
@@ -26,13 +23,13 @@ public class PorterDuffView extends com.facebook.react.uimanager.SimpleViewManag
 
     @Nonnull
     @Override
-    protected ImageView createViewInstance(@Nonnull ThemedReactContext reactContext) {
-        return new ImageView(reactContext);
+    protected FrameLayout createViewInstance(@Nonnull ThemedReactContext reactContext) {
+        return new FrameLayout(reactContext);
     }
 
     @ReactProp(name = "urls")
-    public void setUrl(ImageView imageView, ReadableMap urls){
-        new AsyncBitmpas(imageView, this).execute(urls);
+    public void setUrl(FrameLayout frameLayout, ReadableMap urls){
+        new AsyncBitmpas(frameLayout, this).execute(urls);
     }
 
     @Nullable
@@ -42,13 +39,13 @@ public class PorterDuffView extends com.facebook.react.uimanager.SimpleViewManag
     }
 
     @Override
-    public void bitmapsReady(Bitmap destination, Bitmap source, ImageView imageView) {
-        Canvas canvas = new Canvas();
-        Paint paint = new Paint();
-        canvas.drawBitmap(destination, 0,0, paint);
-        PorterDuff.Mode mode = PorterDuff.Mode.XOR;
-        paint.setXfermode(new PorterDuffXfermode(mode));
-        canvas.drawBitmap(source, 0, 0, paint);
-        imageView.setImageBitmap(destination);
+    public void bitmapsReady(Bitmap destination, Bitmap source, FrameLayout frameLayout) {
+        cl.cutiko.porterduffview.view.PorterDuffView view = new cl.cutiko.porterduffview.view.PorterDuffView(
+                frameLayout.getContext(),
+                destination,
+                source
+        );
+        view.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        frameLayout.addView(view);
     }
 }

@@ -1,10 +1,10 @@
 package cl.cutiko.porterduffview;
 
 import android.graphics.Bitmap;
-import android.widget.ImageView;
+import android.widget.FrameLayout;
 
 public interface BitmapsCallback {
 
-    void bitmapsReady(Bitmap destination, Bitmap source, ImageView imageView);
+    void bitmapsReady(Bitmap destination, Bitmap source, FrameLayout frameLayout);
 
 }
