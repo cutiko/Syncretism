@@ -13,7 +13,6 @@ import javax.annotation.Nullable;
 
 public class ToastModule extends ReactContextBaseJavaModule {
 
-
     public ToastModule(@Nonnull ReactApplicationContext reactContext) {
         super(reactContext);
     }
@@ -21,7 +20,7 @@ public class ToastModule extends ReactContextBaseJavaModule {
     @Nonnull
     @Override
     public String getName() {
-        return getName();
+        return getClass().getSimpleName();
     }
 
     @Nullable
