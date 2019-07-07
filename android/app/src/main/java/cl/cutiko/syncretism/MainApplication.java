@@ -13,6 +13,7 @@ import com.facebook.soloader.SoLoader;
 import java.util.Arrays;
 import java.util.List;
 
+import cl.cutiko.imagecomposer.ImageComposerPackage;
 import cl.cutiko.syncretism.toast.ToastPackage;
 
 public class MainApplication extends Application implements ReactApplication {
@@ -29,7 +30,8 @@ public class MainApplication extends Application implements ReactApplication {
                     new MainReactPackage(),
                     new RNGestureHandlerPackage(),
                     new A0Auth0Package(),
-                    new ToastPackage()
+                    new ToastPackage(),
+                    new ImageComposerPackage()
             );
         }
 
