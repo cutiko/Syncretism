@@ -13,7 +13,6 @@ import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import java.util.Arrays;
 import java.util.List;
 
-import cl.cutiko.imagecomposer.ImageComposerPackage;
 import cl.cutiko.porterduffview.PorterDuffPackage;
 import cl.cutiko.syncretism.toast.ToastPackage;
 
@@ -32,7 +31,6 @@ public class MainApplication extends Application implements ReactApplication {
                     new RNGestureHandlerPackage(),
                     new A0Auth0Package(),
                     new ToastPackage(),
-                    new ImageComposerPackage(),
                     new PorterDuffPackage()
             );
         }
