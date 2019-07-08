@@ -2,7 +2,6 @@ package cl.cutiko.porterduffview;
 
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
-import android.util.Log;
 import android.widget.FrameLayout;
 
 import com.facebook.react.bridge.ReadableMap;
@@ -37,22 +36,13 @@ public class AsyncBitmpas extends AsyncTask<ReadableMap, Void, Map<String, Bitma
             //TODO this should be either Kotlin coroutines or a threadpool
             Bitmap destination = picasso.load(dest).get();
             Bitmap source = picasso.load(src).get();
-            Log.d("CUTIKO_TAG", "AsyncBitmpas.java" + " doInBackground: bytes destination " + destination.getByteCount());
-            Log.d("CUTIKO_TAG", "AsyncBitmpas.java" + " doInBackground: height destination " + destination.getHeight());
-            Log.d("CUTIKO_TAG", "AsyncBitmpas.java" + " doInBackground: width destination " + destination.getWidth());
-            Log.d("CUTIKO_TAG", "AsyncBitmpas.java" + " doInBackground: bytes source " + source.getByteCount());
-            Log.d("CUTIKO_TAG", "AsyncBitmpas.java" + " doInBackground: height source " + source.getHeight());
-            Log.d("CUTIKO_TAG", "AsyncBitmpas.java" + " doInBackground: width source " + source.getWidth());
-
             Map<String, Bitmap> map = new HashMap<>();
             map.put(Constants.DESTINATION, destination);
             map.put(Constants.SOURCE, source);
-            Log.d("CUTIKO_TAG", "AsyncBitmpas.java" + " doInBackground: bitmpas ready" );
             return map;
         } catch (IOException e) {
             e.printStackTrace();
             //TODO add error bitmaps
-            Log.d("CUTIKO_TAG", "AsyncBitmpas.java" + " doInBackground: ", e);
             return null;
         }
     }
